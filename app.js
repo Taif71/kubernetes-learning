@@ -32,6 +32,10 @@ app.post('/story', (req, res) => {
   });
 });
 
+app.get('/error', () => {
+  process.exit(1); // this will crash the container and cause it to restart
+});
+
 app.listen(3000, () => {
   console.log("Server started at 3000");
 });
