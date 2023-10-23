@@ -6,6 +6,7 @@ apiVersion:
     volumeName: host-pv
     accessModes:
       - ReadWriteOnce
+    storageClassName: standard
     resources:
       requests:
         storage: 1Gi # this is the max i can request here and it is set in the host-pv volume. We could also requests less for this claim. If we had multiple claims for the same PV, we might wanna request less so that in total we don't reuqest more or it will cause errors
