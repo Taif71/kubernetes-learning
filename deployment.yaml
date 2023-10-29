@@ -14,7 +14,10 @@ spec:
     spec:
       containers:
         - name: story
-          image: taifdev/kub-data:1
+          image: taifdev/kub-data:2 # changed this to 2 from 1 in video 196
+          env:
+            - name: STORY_FOLDER
+              value: story # this story must match the volumeMounts mountPath directory below
           volumeMounts: 
             - mountPath: /app/story # container internal path where this should be mounted. emptyDir should be mounted in within the container in the /app/story directory
               name: story-volume # you can have multiple volumes integrated. that is why we use the name to direct which volume to be used with this path
