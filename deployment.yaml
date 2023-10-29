@@ -27,5 +27,5 @@ spec:
               name: story-volume # you can have multiple volumes integrated. that is why we use the name to direct which volume to be used with this path
       volumes: # in the same line as containers. All the containers of that pod will be able to use this volume
         - name: story-volume
-          persistentVolumClaim:
+          persistentVolumeClaim:
             claimName: host-pvc
