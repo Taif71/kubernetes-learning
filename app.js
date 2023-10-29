@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // const filePath = path.join(__dirname, 'story', 'text.txt');
-const filePath = path.join(__dirname, process.env.STORY_FOLDER, 'text.txt'); // since we are using env variables in k8s deployment.yaml file. we did this
+const filePath = path.join(__dirname, process.env.STORY_FOLDER || 'story', 'text.txt'); // since we are using env variables in k8s deployment.yaml file. we did this
 
 app.use(bodyParser.json());
 
