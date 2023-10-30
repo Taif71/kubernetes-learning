@@ -18,5 +18,3 @@ spec:
           env:
             - name: AUTH_ADDRESS
               value: localhost # we can also use a file or configmap to hard code the value
-        - name: auth
-          image: taifdev/kub-demo-auth:latest
