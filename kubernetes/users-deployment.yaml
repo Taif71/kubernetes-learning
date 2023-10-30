@@ -17,4 +17,7 @@ spec:
           image: taifdev/kub-demo-users:latest
           env:
             - name: AUTH_ADDRESS
-              value: "10.99.104.252" # we can also use a file or configmap to hard code the value
+              # value: "10.99.104.252" # we can also use a file or configmap to hard code the value 
+              value: "auth-service.default" # automatically generated domain which will be used inside of your cluster
+              # we are using auth-service here as a domain to send a requests to. this is kind of similar to docker compose
+              # pattern of DNS name for service : <service-name>.<namespace>
