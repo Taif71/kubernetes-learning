@@ -17,4 +17,4 @@ spec:
           image: taifdev/kub-demo-users:latest
           env:
             - name: AUTH_ADDRESS
-              value: localhost # we can also use a file or configmap to hard code the value
+              value: "10.99.104.252" # we can also use a file or configmap to hard code the value
