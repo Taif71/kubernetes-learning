@@ -1,3 +1,38 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: efs-sc
+provisioner: efs.csi.aws.com
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+  name: efs-pv
+spec: 
+  capacity: 
+    storage: 5Gi
+  VolumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  storageClassName: efs-sc
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-232321 # paste your aws efs volumeId here
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-pvc
+spec: 
+  access:
+    - ReadWriteMany
+  storageClassName: efs-sc
+  resources:
+    request:
+      storage: 5Gi
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -33,3 +68,10 @@ spec:
               value: 'mongodb+srv://maximilian:wk4nFupsbntPbB3l@cluster0.ntrwp.mongodb.net/users?retryWrites=true&w=majority'
             - name: AUTH_API_ADDRESSS
               value: 'auth-service.default:3000'
+          volumeMounts:
+            - name: efs-vol
+              mountPath: /app/users
+      volumes:
+        - name: efs-vol
+          persistentVolumeClaim:
+            claimName:  efs-pvc
